@@ -114,16 +114,16 @@
             app:layout_constraintTop_toBottomOf="@id/choice1_result_background" />
 
         <TextView
-            android:id="@+id/choice1_result_textview"
-            style="@style/AppTheme.ChoiceResultTextView"
-            android:layout_width="0dp"
-            android:layout_height="0dp"
-            app:layout_constraintBottom_toBottomOf="@+id/choice1_result_background"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="@+id/choice1_result_background"
-            app:layout_constraintVertical_chainStyle="spread"
-            tools:text="55%" />
+                android:id="@+id/choice1_result_textview"
+                style="@style/AppTheme.ChoiceResultTextView"
+                android:layout_width="0dp"
+                android:layout_height="0dp"
+                app:layout_constraintBottom_toBottomOf="@+id/choice1_result_background"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="@+id/choice1_result_background"
+                app:layout_constraintVertical_chainStyle="spread"
+                tools:text="55%"/>
 
         <TextView
             android:id="@+id/choice1_textview"
