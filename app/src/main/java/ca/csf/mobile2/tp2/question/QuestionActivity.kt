@@ -50,6 +50,10 @@ class QuestionActivity : AppCompatActivity() {
     @InstanceState
     protected lateinit var question : Question
 
+    protected fun onCreate() {
+        
+    }
+
     @AfterViews
     protected fun afterViews(){
     }
