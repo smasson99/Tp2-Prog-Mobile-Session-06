@@ -21,8 +21,8 @@ class QuestionService{
     private val service : Service
 
     init {
-       /* val jackson = ObjectMapper()
-            .registerKotlinModule()*/
+        val jackson = ObjectMapper()
+            .registerKotlinModule()
         val retrofit = Retrofit.Builder()
             .baseUrl(URL)
             .addConverterFactory(JacksonConverterFactory.create())

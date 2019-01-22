@@ -1,7 +1,17 @@
-<layout>
-<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<layout
+    xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
-    xmlns:tools="http://schemas.android.com/tools"
+    xmlns:tools="http://schemas.android.com/tools">
+
+    <data>
+        <import type="android.view.View" />
+
+        <variable
+        name = "viewModel"
+        type = "ca.csf.mobile2.tp2.question.QuestionActivityViewModel"/>
+    </data>
+
+    <FrameLayout
     android:id="@+id/root_view"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
@@ -12,10 +22,6 @@
         android:layout_width="match_parent"
         android:layout_height="?attr/actionBarSize"
         tools:title="Would you rather..." />
-
-    <data>
-        <import type="android.view.View" />
-    </data>
 
     <!--
     *************************************************************
