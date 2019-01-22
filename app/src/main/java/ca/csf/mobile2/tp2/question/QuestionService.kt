@@ -13,7 +13,7 @@ import retrofit2.http.Path
 import java.io.IOException
 import java.util.*
 
-private const val URL="https://m2t2.csfpwmjv.tk"
+private const val URL="https://m2t2.csfpwmjv.tk/"
 
 @EBean(scope = EBean.Scope.Singleton)
 class QuestionService{
@@ -25,7 +25,7 @@ class QuestionService{
             .registerKotlinModule()
         val retrofit = Retrofit.Builder()
             .baseUrl(URL)
-            .addConverterFactory(JacksonConverterFactory.create())
+            .addConverterFactory(JacksonConverterFactory.create(jackson))
             .build()
 
         service = retrofit.create(Service::class.java)

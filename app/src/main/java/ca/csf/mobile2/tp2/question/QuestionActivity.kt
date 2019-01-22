@@ -60,7 +60,6 @@ class QuestionActivity : AppCompatActivity() {
     protected fun onCreate(@BindingObject dataBinder : ActivityQuestionBinding) {
         question = Question(UUID.fromString("00000000-0000-0000-0000-000000000000"), "", "", "", 0, 0)
         viewModel = QuestionActivityViewModel(question)
-        questionService = QuestionService()
 
         dataBinder.viewModel = viewModel
     }
@@ -135,12 +134,14 @@ class QuestionActivity : AppCompatActivity() {
     protected fun onConnectivityError(){
         //TODO : ShowErrorMessage
         hideProgressBar()
+        Log.v("bob", "connectivity error")
     }
 
     @UiThread
     protected  fun onServerError(){
         //TODO : ShowErrorMessage
         hideProgressBar()
+        Log.v("bob", "server error")
     }
 
     private fun hideAll(){
