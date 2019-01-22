@@ -94,16 +94,16 @@ class QuestionActivity : AppCompatActivity() {
             this::onServerError)
     }
     @UiThread
-    protected fun onRandomQuestionFound(){
+    protected fun onRandomQuestionFound(question : Question){
         //TODO : ShowRandomQuestion
     }
     @UiThread
-    protected fun onQuestion1Chose(){
+    protected fun onQuestion1Chose(question: Question){
         //TODO : ShowQuestion1
     }
 
     @UiThread
-    protected fun onQuestion2Chose(){
+    protected fun onQuestion2Chose(question : Question){
         //TODO : ShowQuestion2
     }
 
