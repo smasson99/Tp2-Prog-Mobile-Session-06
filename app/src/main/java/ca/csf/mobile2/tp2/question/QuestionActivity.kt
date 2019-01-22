@@ -54,17 +54,17 @@ class QuestionActivity : AppCompatActivity() {
 
     @Click(R.id.retry_button)
     protected fun onRetryButtonClicked(){
-
+        getRandomQuestion()
     }
 
     @Click(R.id.choice1_button)
     protected fun onChoice1ButtonClicked(){
-
+        chooseQuestion1(0)
     }
 
     @Click(R.id.choice2_button)
     protected fun onChoice2ButtonClicked(){
-
+        chooseQuestion2(0)
     }
 
     private fun hideProgressBar(){
