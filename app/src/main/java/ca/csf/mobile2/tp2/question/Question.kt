@@ -1,8 +1,11 @@
 package ca.csf.mobile2.tp2.question
 
+import org.parceler.Parcel
+import org.parceler.ParcelConstructor
 import java.util.*
 
-data class Question(
+@Parcel(Parcel.Serialization.BEAN)
+data class Question @ParcelConstructor constructor(
     var id : UUID,
     var text : String,
     var choice1 : String,
