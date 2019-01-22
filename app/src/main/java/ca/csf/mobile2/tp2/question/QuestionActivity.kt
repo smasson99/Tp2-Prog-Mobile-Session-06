@@ -47,9 +47,11 @@ class QuestionActivity : AppCompatActivity() {
     @Bean
     protected  lateinit var questionService: QuestionService
 
+    @InstanceState
+    protected lateinit var question : Question
+
     @AfterViews
     protected fun afterViews(){
-
     }
 
     @Click(R.id.retry_button)
