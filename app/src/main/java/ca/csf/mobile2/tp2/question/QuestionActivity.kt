@@ -132,14 +132,14 @@ class QuestionActivity : AppCompatActivity() {
 
     @UiThread
     protected fun onConnectivityError(){
-        //TODO : ShowErrorMessage
+        viewModel.activityState=ActivityState.ERROR_CONNECTIVITY
         hideProgressBar()
         Log.v("bob", "connectivity error")
     }
 
     @UiThread
     protected  fun onServerError(){
-        //TODO : ShowErrorMessage
+        viewModel.activityState=ActivityState.ERROR_SERVER
         hideProgressBar()
         Log.v("bob", "server error")
     }

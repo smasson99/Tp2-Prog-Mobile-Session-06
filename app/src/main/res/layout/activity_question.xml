@@ -5,6 +5,7 @@
 
     <data>
         <import type="android.view.View" />
+        <import type="ca.csf.mobile2.tp2.question.ActivityState"/>
 
         <variable
         name = "viewModel"
@@ -191,6 +192,7 @@
             android:layout_marginBottom="8dp"
             android:adjustViewBounds="true"
             android:contentDescription="@string/text_error"
+            android:visibility="@{viewModel.activityState==ActivityState.ERROR_CONNECTIVITY || viewModel.activityState==ActivityState.ERROR_SERVER ? View.VISIBLE : View.INVISIBLE}"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
@@ -205,10 +207,11 @@
             android:layout_marginStart="8dp"
             android:layout_marginTop="8dp"
             android:layout_marginEnd="8dp"
+            android:visibility="@{viewModel.activityState==ActivityState.ERROR_CONNECTIVITY || viewModel.activityState==ActivityState.ERROR_SERVER ? View.VISIBLE : View.INVISIBLE}"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/error_imageview"
-            tools:text="@string/text_error_internet" />
+            tools:text="@{viewModel.activityState==ActivityState.ERROR_CONNECTIVITY ? @string/text_error_internet : @string/text_error_server}" />
 
         <Button
             android:id="@+id/retry_button"
