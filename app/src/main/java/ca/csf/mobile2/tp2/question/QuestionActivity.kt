@@ -1,13 +1,11 @@
 package ca.csf.mobile2.tp2.question
 
 import android.annotation.SuppressLint
+import android.os.Bundle
 import android.support.v7.app.AppCompatActivity
 import android.util.Log
 import android.view.View
-import android.widget.Button
-import android.widget.ImageView
-import android.widget.ProgressBar
-import android.widget.TextView
+import android.widget.*
 import ca.csf.mobile2.tp2.R
 import ca.csf.mobile2.tp2.databinding.ActivityQuestionBinding
 import org.androidannotations.annotations.*
@@ -18,6 +16,9 @@ import java.util.*
 @DataBound
 @EActivity(R.layout.activity_question)
 class QuestionActivity : AppCompatActivity() {
+
+    @ViewById(R.id.toolbar)
+    protected lateinit var toolbar: Toolbar
 
     @ViewById(R.id.choice1_textview)
     protected lateinit var choice1TextView : TextView
@@ -58,10 +59,12 @@ class QuestionActivity : AppCompatActivity() {
     protected lateinit var viewModel : QuestionActivityViewModel
 
     protected fun onCreate(@BindingObject dataBinder : ActivityQuestionBinding) {
-        question = Question(UUID.fromString("00000000-0000-0000-0000-000000000000"), "", "", "", 0, 0)
+        question = Question()
         viewModel = QuestionActivityViewModel(question)
 
         dataBinder.viewModel = viewModel
+
+        getRandomQuestion()
     }
 
     @AfterViews
@@ -83,15 +86,9 @@ class QuestionActivity : AppCompatActivity() {
         chooseQuestion2(0)
     }
 
-    private fun hideProgressBar(){
-        progressBar.visibility = View.INVISIBLE
-    }
-
-    private fun showProgressBar(){
-        progressBar.visibility = View.VISIBLE
-    }
-
     protected  fun getRandomQuestion(){
+        viewModel.isLoading = true
+
         questionService.getRandomQuestion(
             this::onRandomQuestionFound,
             this::onConnectivityError,
@@ -101,7 +98,6 @@ class QuestionActivity : AppCompatActivity() {
         questionService.getQuestion1( id,this::onQuestion1Chose,
             this::onConnectivityError,
             this::onServerError)
-
     }
 
     protected fun chooseQuestion2(id: Int) {
@@ -113,6 +109,9 @@ class QuestionActivity : AppCompatActivity() {
     protected fun onRandomQuestionFound(question : Question){
         //TODO : ShowRandomQuestion
         this.question = question
+        viewModel.question = question
+        viewModel.isLoading = false
+
         Log.v("bob", "Id: " + question.id + " Text: " + question.text + " Choice 1 " + question.choice1 +
                 " Choice 2 " + question.choice2 + " NbChoice1 " + question.nbChoice1 + " NbChoice2 " +
                 question.nbChoice2)
@@ -122,46 +121,32 @@ class QuestionActivity : AppCompatActivity() {
     protected fun onQuestion1Chose(question: Question){
         //TODO : ShowQuestion1
         this.question = question
+        viewModel.question = question
     }
 
     @UiThread
     protected fun onQuestion2Chose(question : Question){
         //TODO : ShowQuestion2
         this.question = question
+        viewModel.question = question
     }
 
     @UiThread
     protected fun onConnectivityError(){
         //TODO : ShowErrorMessage
-        hideProgressBar()
+        viewModel.isLoading = false
+        viewModel.currentErrorCode = QuestionActivityErrorCode.CONNECTIVITY
+        viewModel.errorMessage = getString(R.string.text_error_internet)
         Log.v("bob", "connectivity error")
     }
 
     @UiThread
     protected  fun onServerError(){
         //TODO : ShowErrorMessage
-        hideProgressBar()
+        viewModel.isLoading = false
+        viewModel.currentErrorCode = QuestionActivityErrorCode.SERVER
+        viewModel.errorMessage = getString(R.string.text_error_server)
         Log.v("bob", "server error")
-    }
-
-    private fun hideAll(){
-        hideProgressBar()
-        hideChoiceTextViews()
-        hideChoiceResultTextViews()
-        hideErrorVisuals()
-    }
-
-    private fun hideChoiceTextViews(){
-        choice1TextView.visibility = View.INVISIBLE
-        choice2TextView.visibility = View.INVISIBLE
-    }
-    private fun hideChoiceResultTextViews(){
-        choice1ResultTextView.visibility = View.INVISIBLE
-        choice2ResultTextView.visibility = View.INVISIBLE
-    }
-    private fun hideErrorVisuals(){
-        errorImageView.visibility = View.INVISIBLE
-        errorTextView.visibility = View.INVISIBLE
     }
 
 

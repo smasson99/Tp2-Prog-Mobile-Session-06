@@ -7,10 +7,19 @@ import org.parceler.Parcel
 import org.parceler.ParcelConstructor
 import java.util.*
 
+enum class QuestionActivityErrorCode
+{
+    NONE,
+    CONNECTIVITY,
+    SERVER
+}
+
 @Parcel(Parcel.Serialization.BEAN)
 class QuestionActivityViewModel @ParcelConstructor constructor(question : Question) : BaseObservable() {
 
-    var question by ViewModelProperty<Question>(Question(), this)
+    var question by ViewModelProperty(Question(), this)
+    var currentErrorCode = QuestionActivityErrorCode.NONE
+    var errorMessage = ""
 
     fun onResume() {
 
@@ -21,5 +30,13 @@ class QuestionActivityViewModel @ParcelConstructor constructor(question : Questi
     }
 
     @get:Bindable
-    val text get() = question.text
+    val text : String get() = question.text
+    @get:Bindable
+    var isLoading : Boolean = false
+    @get:Bindable
+    val errorCode : QuestionActivityErrorCode get() = currentErrorCode
+    @get:Bindable
+    val hasAnError : Boolean get() = currentErrorCode != QuestionActivityErrorCode.NONE
+    @get:Bindable
+    val error : String get() = errorMessage
 }
