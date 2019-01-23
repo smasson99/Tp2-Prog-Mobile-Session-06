@@ -13,3 +13,6 @@ data class Question @ParcelConstructor constructor(
     var nbChoice1 : Int,
     var nbChoice2 : Int
 )
+{
+    constructor() : this (UUID.fromString("00000000-0000-0000-0000-000000000000"), "", "", "", -1, -1)
+}
