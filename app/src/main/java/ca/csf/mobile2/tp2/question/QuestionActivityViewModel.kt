@@ -15,7 +15,7 @@ enum class ActivityState(){
 }
 
 @Parcel(Parcel.Serialization.BEAN)
-class QuestionActivityViewModel /*@ParcelConstructor constructor*/(question : Question=Question()) : BaseObservable() {
+class QuestionActivityViewModel @ParcelConstructor constructor(question : Question) : BaseObservable() {
 
     //var question by ViewModelProperty<Question>(Question(), this)
 
@@ -28,7 +28,7 @@ class QuestionActivityViewModel /*@ParcelConstructor constructor*/(question : Qu
     }
 
     @get:Bindable
-    var question:Question by ViewModelProperty(Question(), this)
+    var question:Question by ViewModelProperty(question, this)
     @get:Bindable
     var id: UUID by ViewModelProperty(question.id,this)
     @get:Bindable

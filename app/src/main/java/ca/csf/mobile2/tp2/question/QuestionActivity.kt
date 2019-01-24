@@ -59,7 +59,9 @@ class QuestionActivity : AppCompatActivity() {
 
     protected fun onCreate(@BindingObject dataBinder : ActivityQuestionBinding) {
         question = Question(UUID.fromString("00000000-0000-0000-0000-000000000000"), "", "", "", 0, 0)
-        viewModel = QuestionActivityViewModel(question)
+        if(!this::viewModel.isInitialized){
+            viewModel = QuestionActivityViewModel(question)
+        }
 
         dataBinder.viewModel = viewModel
     }
@@ -113,10 +115,10 @@ class QuestionActivity : AppCompatActivity() {
     @UiThread
     protected fun onRandomQuestionFound(question : Question){
         //TODO : ShowRandomQuestion
-        this.question = question
+        viewModel= QuestionActivityViewModel(question)
         viewModel.activityState=ActivityState.SHOW
         hideProgressBar()
-        Log.v("bob", "Id: " + viewModel.id + " Text: " + /*question.text*/viewModel.text +
+        Log.v("bob", "Id: " + viewModel.id + " Text: " + viewModel.text +
                 " Choice 1 " + viewModel.choice1 + " Choice 2 " + viewModel.choice2 + " NbChoice1 " +
                 viewModel.nbChoice1 + " NbChoice2 " + viewModel.nbChoice2)
 
