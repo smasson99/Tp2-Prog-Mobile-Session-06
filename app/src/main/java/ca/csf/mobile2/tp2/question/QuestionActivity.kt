@@ -92,6 +92,7 @@ class QuestionActivity : AppCompatActivity() {
     }
 
     protected  fun getRandomQuestion(){
+        viewModel.activityState=ActivityState.SEARCH
         questionService.getRandomQuestion(
             this::onRandomQuestionFound,
             this::onConnectivityError,
@@ -113,9 +114,11 @@ class QuestionActivity : AppCompatActivity() {
     protected fun onRandomQuestionFound(question : Question){
         //TODO : ShowRandomQuestion
         this.question = question
-        Log.v("bob", "Id: " + question.id + " Text: " + question.text + " Choice 1 " + question.choice1 +
-                " Choice 2 " + question.choice2 + " NbChoice1 " + question.nbChoice1 + " NbChoice2 " +
-                question.nbChoice2)
+        viewModel.activityState=ActivityState.SHOW
+        hideProgressBar()
+        Log.v("bob", "Id: " + viewModel.id + " Text: " + /*question.text*/viewModel.text +
+                " Choice 1 " + viewModel.choice1 + " Choice 2 " + viewModel.choice2 + " NbChoice1 " +
+                viewModel.nbChoice1 + " NbChoice2 " + viewModel.nbChoice2)
 
     }
     @UiThread
@@ -134,14 +137,12 @@ class QuestionActivity : AppCompatActivity() {
     protected fun onConnectivityError(){
         viewModel.activityState=ActivityState.ERROR_CONNECTIVITY
         hideProgressBar()
-        Log.v("bob", "connectivity error")
     }
 
     @UiThread
     protected  fun onServerError(){
         viewModel.activityState=ActivityState.ERROR_SERVER
         hideProgressBar()
-        Log.v("bob", "server error")
     }
 
     private fun hideAll(){
