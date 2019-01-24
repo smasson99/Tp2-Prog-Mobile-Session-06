@@ -4,14 +4,13 @@ import com.fasterxml.jackson.databind.ObjectMapper
 import com.fasterxml.jackson.module.kotlin.registerKotlinModule
 import org.androidannotations.annotations.Background
 import org.androidannotations.annotations.EBean
-import org.androidannotations.annotations.UiThread
 import retrofit2.Call
 import retrofit2.Retrofit
 import retrofit2.converter.jackson.JacksonConverterFactory
 import retrofit2.http.GET
+import retrofit2.http.POST
 import retrofit2.http.Path
 import java.io.IOException
-import java.util.*
 
 private const val URL="https://m2t2.csfpwmjv.tk/"
 
@@ -32,7 +31,7 @@ class QuestionService{
     }
 
     @Background
-    fun getQuestion1(id : Int,onSuccess : (Question) -> Unit,
+    fun getQuestion1(id : String,onSuccess : (Question) -> Unit,
                      onConnectivityError : () -> Unit,
                      onServerError : () -> Unit){
         try{
@@ -50,7 +49,7 @@ class QuestionService{
 
     }
     @Background
-    fun getQuestion2(id : Int,onSuccess : (Question) -> Unit,
+    fun getQuestion2(id : String,onSuccess : (Question) -> Unit,
                      onConnectivityError : () -> Unit,
                      onServerError : () -> Unit){
         try{
@@ -92,12 +91,10 @@ class QuestionService{
         @GET("/api/v1/question/random")
         fun getRandomQuestion() : Call<Question>
 
-        @GET("/api/v1/question/{id}/choose1")
-        fun chooseQuestion1(@Path("id") id : Int ) : Call<Question>
+        @POST("/api/v1/question/{id}/choose1")
+        fun chooseQuestion1(@Path("id") id : String ) : Call<Question>
 
-        @GET ("/api/v1/question/{id}/choose2")
-        fun chooseQuestion2(@Path("id")id : Int) : Call<Question>
-
-
+        @POST ("/api/v1/question/{id}/choose2")
+        fun chooseQuestion2(@Path("id")id : String) : Call<Question>
     }
 }
