@@ -77,6 +77,6 @@ class QuestionActivityViewModel @ParcelConstructor constructor(question : Questi
 @BindingAdapter("percentage")
 fun displayPercentage(textView: TextView, percentage : Float){
     textView.text = textView.resources.getString(
-        R.string.text_percentage, percentage.roundToInt()
+        R.string.text_percentage, percentage
     )
 }
