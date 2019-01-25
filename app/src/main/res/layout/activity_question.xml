@@ -5,6 +5,7 @@
 
     <data>
         <import type="android.view.View" />
+        <import type="ca.csf.mobile2.tp2.question.QuestionActivityErrorCode"/>
 
         <variable
         name = "viewModel"
@@ -204,7 +205,6 @@
             app:layout_constraintVertical_chainStyle="packed"
             app:srcCompat="@drawable/ic_wifi_off" />
 
-        <!--TODO : Android et non pas Tools-->
         <TextView
             android:id="@+id/error_textview"
             android:layout_width="wrap_content"
@@ -215,7 +215,7 @@
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/error_imageview"
-            tools:text="@{viewModel.error == ryef ? @sintrg/ffdshuf : @strubg/fdhgjdf}"/>
+            app:text="@{viewModel.error == QuestionActivityErrorCode.CONNECTIVITY ? @string/text_error_internet :  @string/text_error_server }"/>
 
         <Button
             android:id="@+id/retry_button"
