@@ -2,12 +2,16 @@ package ca.csf.mobile2.tp2.question
 
 import android.databinding.BaseObservable
 import android.databinding.Bindable
+import android.databinding.BindingAdapter
 import android.os.Debug
 import android.util.Log
+import android.widget.TextView
+import ca.csf.mobile2.tp2.R
 import ca.csf.mobile2.tp2.util.ViewModelProperty
 import org.parceler.Parcel
 import org.parceler.ParcelConstructor
 import java.util.*
+import kotlin.math.roundToInt
 
 enum class QuestionActivityErrorCode
 {
@@ -46,20 +50,20 @@ class QuestionActivityViewModel @ParcelConstructor constructor(question : Questi
     val hasAnError : Boolean get() = currentErrorCode != QuestionActivityErrorCode.NONE
 
     @get:Bindable
-    val percentQuestion1 : String get() {
+    val percentQuestion1 : Float get() {
 
         if (question.nbChoice1 + question.nbChoice2 <= 0)
-            return 0.toString()
+            return 0.0f
 
-        return (question.nbChoice1.toFloat() / questionTotalAnswers.toFloat() * 100).toInt().toString() + "%"
+        return (question.nbChoice1.toFloat() / questionTotalAnswers.toFloat() * 100)
     }
     @get:Bindable
-    val percentQuestion2 : String get() {
+    val percentQuestion2 : Float get() {
         if (question.nbChoice1 + question.nbChoice2 <= 0)
-            return 0.toString()
+            return 0.0f
 
         Log.v("bob", "1: " + question.nbChoice1 + " 2: " + question.nbChoice2 + " total : " + questionTotalAnswers)
-        return (question.nbChoice2.toFloat() / questionTotalAnswers.toFloat() * 100).toInt().toString() + "%"
+        return (question.nbChoice2.toFloat() / questionTotalAnswers.toFloat() * 100)
     }
 
     @get:Bindable
@@ -68,4 +72,11 @@ class QuestionActivityViewModel @ParcelConstructor constructor(question : Questi
     val choice2 : String get() = question.choice2
     @get:Bindable
     var errorMessage : String = ""
+}
+
+@BindingAdapter("percentage")
+fun displayPercentage(textView: TextView, percentage : Float){
+    textView.text = textView.resources.getString(
+        R.string.text_percentage, percentage.roundToInt()
+    )
 }
