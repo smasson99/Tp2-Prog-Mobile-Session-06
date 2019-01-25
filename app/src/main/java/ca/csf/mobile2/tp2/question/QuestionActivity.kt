@@ -33,11 +33,6 @@ class QuestionActivity : AppCompatActivity() {
            getRandomQuestion()
     }
 
-    //TODO : Delete me
-    @AfterViews
-    protected fun afterViews(){
-
-    }
 
     @Click(R.id.retry_button)
     protected fun onRetryButtonClicked(){
@@ -46,12 +41,12 @@ class QuestionActivity : AppCompatActivity() {
 
     @Click(R.id.choice1_button)
     protected fun onChoice1ButtonClicked(){
-        chooseQuestion1(question.id)
+        chooseQuestion1(viewModel.question.id!!)
     }
 
     @Click(R.id.choice2_button)
     protected fun onChoice2ButtonClicked(){
-        chooseQuestion2(question.id)
+        chooseQuestion2(viewModel.question.id!!)
     }
 
     protected  fun getRandomQuestion(){
@@ -66,14 +61,16 @@ class QuestionActivity : AppCompatActivity() {
     }
     protected fun chooseQuestion1(id : UUID) {
         viewModel.userHasAnswered = true
-        questionService.getQuestion1( id.toString(),this::onQuestion1Chose,
+        questionService.getQuestion1( id.toString(),
+            this::onQuestionChoose,
             this::onConnectivityError,
             this::onServerError)
     }
 
     protected fun chooseQuestion2(id: UUID) {
         viewModel.userHasAnswered = true
-        questionService.getQuestion2(  id.toString(), this::onQuestion2Chose,
+        questionService.getQuestion2(  id.toString(),
+            this::onQuestionChoose,
             this::onConnectivityError,
             this::onServerError)
     }
@@ -85,15 +82,8 @@ class QuestionActivity : AppCompatActivity() {
         viewModel.userHasAnswered = false
     }
 
-    //TODO : Duplicate code to remove
     @UiThread
-    protected fun onQuestion1Chose(question: Question){
-        this.question = question
-        viewModel.question = question
-    }
-
-    @UiThread
-    protected fun onQuestion2Chose(question : Question){
+    protected fun onQuestionChoose(question : Question){
         this.question = question
         viewModel.question = question
     }
