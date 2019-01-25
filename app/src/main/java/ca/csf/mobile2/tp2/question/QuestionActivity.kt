@@ -2,7 +2,6 @@ package ca.csf.mobile2.tp2.question
 
 import android.annotation.SuppressLint
 import android.support.v7.app.AppCompatActivity
-import android.util.Log
 import ca.csf.mobile2.tp2.R
 import ca.csf.mobile2.tp2.databinding.ActivityQuestionBinding
 import org.androidannotations.annotations.*
@@ -24,14 +23,14 @@ class QuestionActivity : AppCompatActivity() {
 
     protected fun onCreate(@BindingObject dataBinder : ActivityQuestionBinding) {
         if(!this::question.isInitialized)
-        question = Question()
+            question = Question()
         if(!this::viewModel.isInitialized)
-        viewModel = QuestionActivityViewModel(question)
+            viewModel = QuestionActivityViewModel(question)
 
         dataBinder.viewModel = viewModel
 
        if(question==viewModel.defaultQuestion)
-        getRandomQuestion()
+           getRandomQuestion()
     }
 
     @AfterViews
@@ -56,6 +55,8 @@ class QuestionActivity : AppCompatActivity() {
 
     protected  fun getRandomQuestion(){
         viewModel.isLoading = true
+        viewModel.currentErrorCode = QuestionActivityErrorCode.NONE
+        viewModel.errorMessage = ""
 
         questionService.getRandomQuestion(
             this::onRandomQuestionFound,
@@ -77,46 +78,34 @@ class QuestionActivity : AppCompatActivity() {
     }
     @UiThread
     protected fun onRandomQuestionFound(question : Question){
-        //TODO : ShowRandomQuestion
         this.question = question
         viewModel.question = question
         viewModel.isLoading = false
         viewModel.userHasAnswered = false
-
-        Log.v("bob", "Id: " + question.id + " Text: " + question.text + " Choice 1 " + question.choice1 +
-                " Choice 2 " + question.choice2 + " NbChoice1 " + question.nbChoice1 + " NbChoice2 " +
-                question.nbChoice2)
-
     }
     @UiThread
     protected fun onQuestion1Chose(question: Question){
-        //TODO : ShowQuestion1
         this.question = question
         viewModel.question = question
     }
 
     @UiThread
     protected fun onQuestion2Chose(question : Question){
-        //TODO : ShowQuestion2
         this.question = question
         viewModel.question = question
     }
 
     @UiThread
     protected fun onConnectivityError(){
-        //TODO : ShowErrorMessage
-        viewModel.isLoading = false
         viewModel.currentErrorCode = QuestionActivityErrorCode.CONNECTIVITY
         viewModel.errorMessage = getString(R.string.text_error_internet)
-        Log.v("bob", "connectivity error")
+        viewModel.isLoading = false
     }
 
     @UiThread
     protected  fun onServerError(){
-        //TODO : ShowErrorMessage
         viewModel.isLoading = false
         viewModel.currentErrorCode = QuestionActivityErrorCode.SERVER
         viewModel.errorMessage = getString(R.string.text_error_server)
-        Log.v("bob", "server error")
     }
 }
