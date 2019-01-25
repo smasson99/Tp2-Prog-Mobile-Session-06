@@ -17,20 +17,8 @@ enum class ActivityState(){
 @Parcel(Parcel.Serialization.BEAN)
 class QuestionActivityViewModel @ParcelConstructor constructor(question : Question) : BaseObservable() {
 
-    //var question by ViewModelProperty<Question>(Question(), this)
 
-    fun onResume() {
-
-    }
-
-    fun onPause() {
-
-    }
-
-    @get:Bindable
-    var question:Question by ViewModelProperty(question, this)
-    @get:Bindable
-    var id: UUID by ViewModelProperty(question.id,this)
+    var question:Question by ViewModelProperty(Question(), this)
     @get:Bindable
     var text:String by ViewModelProperty(question.text,this)
     @get:Bindable

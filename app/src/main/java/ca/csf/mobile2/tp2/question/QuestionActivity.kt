@@ -115,10 +115,11 @@ class QuestionActivity : AppCompatActivity() {
     @UiThread
     protected fun onRandomQuestionFound(question : Question){
         //TODO : ShowRandomQuestion
-        viewModel= QuestionActivityViewModel(question)
+        viewModel.question=question
         viewModel.activityState=ActivityState.SHOW
+        choice2TextView.visibility=View.VISIBLE
         hideProgressBar()
-        Log.v("bob", "Id: " + viewModel.id + " Text: " + viewModel.text +
+        Log.v("bob"," Text: " + viewModel.text +
                 " Choice 1 " + viewModel.choice1 + " Choice 2 " + viewModel.choice2 + " NbChoice1 " +
                 viewModel.nbChoice1 + " NbChoice2 " + viewModel.nbChoice2)
 
