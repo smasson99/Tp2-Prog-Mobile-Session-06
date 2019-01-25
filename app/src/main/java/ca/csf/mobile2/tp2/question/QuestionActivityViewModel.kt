@@ -29,7 +29,7 @@ class QuestionActivityViewModel @ParcelConstructor constructor(question: Questio
     var question by ViewModelProperty(question, this)
     @get:Bindable
     val questionText: String
-        get() = question.text //TODO regroup with context
+        get() = question.text
     @get:Bindable
     val choice1: String
         get() = question.choice1
