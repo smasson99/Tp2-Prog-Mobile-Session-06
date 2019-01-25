@@ -20,7 +20,7 @@
     <string name="text_error_field">Please fill this field.</string>
     <string name="text_error_validation">Please fill all the fields.</string>
 
-    <string name="text_percentage">%d %%</string>
+    <string name="text_percentage">%.1f %%</string>
 
     <string name="text_initial_quesiton" tools:ignore="TypographyEllipsis">Would you rather...</string>
 </resources>

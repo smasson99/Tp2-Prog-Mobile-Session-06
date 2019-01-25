@@ -21,18 +21,11 @@ enum class QuestionActivityErrorCode
 @Parcel(Parcel.Serialization.BEAN)
 class QuestionActivityViewModel @ParcelConstructor constructor(question : Question) : BaseObservable() {
 
-    var question by ViewModelProperty(Question(), this)
+    var question by ViewModelProperty(question, this)
+    val defaultQuestion = Question()
     var currentErrorCode = QuestionActivityErrorCode.NONE
     var userHasAnswered = false
     private val questionTotalAnswers : Int get() = question.nbChoice1 + question.nbChoice2
-
-    fun onResume() {
-
-    }
-
-    fun onPause() {
-
-    }
 
     @get:Bindable
     val questionText : String get() = question.text
@@ -75,6 +68,6 @@ class QuestionActivityViewModel @ParcelConstructor constructor(question : Questi
 @BindingAdapter("percentage")
 fun displayPercentage(textView: TextView, percentage : Float){
     textView.text = textView.resources.getString(
-        R.string.text_percentage, percentage.roundToInt()
+        R.string.text_percentage, percentage
     )
 }
