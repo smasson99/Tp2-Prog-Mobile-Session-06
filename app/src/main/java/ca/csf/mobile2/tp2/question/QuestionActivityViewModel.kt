@@ -20,13 +20,6 @@ enum class QuestionActivityErrorCode
     SERVER
 }
 
-enum class ActivityState(){
-    SEARCH,
-    SHOW,
-    ERROR_SERVER,
-    ERROR_CONNECTIVITY
-}
-
 @Parcel(Parcel.Serialization.BEAN)
 class QuestionActivityViewModel @ParcelConstructor constructor(question : Question) : BaseObservable() {
 
@@ -72,8 +65,6 @@ class QuestionActivityViewModel @ParcelConstructor constructor(question : Questi
     val choice2 : String get() = question.choice2
     @get:Bindable
     var errorMessage : String = ""
-    @get:Bindable
-    var activityState:ActivityState by ViewModelProperty(ActivityState.SEARCH,this)
 }
 
 @BindingAdapter("percentage")

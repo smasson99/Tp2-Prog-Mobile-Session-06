@@ -108,9 +108,7 @@ class QuestionActivity : AppCompatActivity() {
         //TODO : ShowErrorMessage
         viewModel.isLoading = false
         viewModel.currentErrorCode = QuestionActivityErrorCode.CONNECTIVITY
-        viewModel.errorMessage = getString(R.string.text_error_internet)
-        viewModel.activityState=ActivityState.ERROR_CONNECTIVITY
-        Log.v("bob", "connectivity error")
+        //viewModel.errorMessage = getString(R.string.text_error_internet)
     }
 
     @UiThread
@@ -118,9 +116,6 @@ class QuestionActivity : AppCompatActivity() {
         //TODO : ShowErrorMessage
         viewModel.isLoading = false
         viewModel.currentErrorCode = QuestionActivityErrorCode.SERVER
-        viewModel.errorMessage = getString(R.string.text_error_server)
-        viewModel.activityState=ActivityState.ERROR_SERVER
-
-        Log.v("bob", "server error")
+        //viewModel.errorMessage = getString(R.string.text_error_server)
     }
 }
