@@ -2,12 +2,10 @@ package ca.csf.mobile2.tp2.question
 
 import android.databinding.BaseObservable
 import android.databinding.Bindable
-import android.os.Debug
 import android.util.Log
 import ca.csf.mobile2.tp2.util.ViewModelProperty
 import org.parceler.Parcel
 import org.parceler.ParcelConstructor
-import java.util.*
 
 enum class QuestionActivityErrorCode
 {

@@ -3,8 +3,6 @@ package ca.csf.mobile2.tp2.question
 import android.annotation.SuppressLint
 import android.support.v7.app.AppCompatActivity
 import android.util.Log
-import android.view.View
-import android.widget.*
 import ca.csf.mobile2.tp2.R
 import ca.csf.mobile2.tp2.databinding.ActivityQuestionBinding
 import org.androidannotations.annotations.*
@@ -35,6 +33,7 @@ class QuestionActivity : AppCompatActivity() {
 
     @AfterViews
     protected fun afterViews(){
+
     }
 
     @Click(R.id.retry_button)
