@@ -33,12 +33,6 @@ class QuestionActivity : AppCompatActivity() {
            getRandomQuestion()
     }
 
-    //TODO : Delete me
-    @AfterViews
-    protected fun afterViews(){
-
-    }
-
     @Click(R.id.retry_button)
     protected fun onRetryButtonClicked(){
         getRandomQuestion()
@@ -46,12 +40,12 @@ class QuestionActivity : AppCompatActivity() {
 
     @Click(R.id.choice1_button)
     protected fun onChoice1ButtonClicked(){
-        chooseQuestion1(question.id)
+        chooseQuestion1(viewModel.question.id!!)
     }
 
     @Click(R.id.choice2_button)
     protected fun onChoice2ButtonClicked(){
-        chooseQuestion2(question.id)
+        chooseQuestion2(viewModel.question.id!!)
     }
 
     protected  fun getRandomQuestion(){
@@ -85,10 +79,8 @@ class QuestionActivity : AppCompatActivity() {
         viewModel.userHasAnswered = false
     }
 
-    //TODO : Duplicate code to remove
     @UiThread
     protected fun onQuestion1Chose(question: Question){
-        this.question = question
         viewModel.question = question
     }
 
@@ -101,7 +93,7 @@ class QuestionActivity : AppCompatActivity() {
     @UiThread
     protected fun onConnectivityError(){
         viewModel.currentErrorCode = QuestionActivityErrorCode.CONNECTIVITY
-        viewModel.errorMessage = getString(R.string.text_error_internet)
+        viewModel.errorMessage = getString(R.string.text_error_internet) //TODO: Change this shit
         viewModel.isLoading = false
     }
 
