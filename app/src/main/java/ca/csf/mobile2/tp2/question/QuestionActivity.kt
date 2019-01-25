@@ -13,66 +13,74 @@ import java.util.*
 class QuestionActivity : AppCompatActivity() {
 
     @Bean
-    protected  lateinit var questionService : QuestionService
+    protected lateinit var questionService: QuestionService
 
     @InstanceState
-    protected lateinit var question : Question
+    protected lateinit var question: Question
 
     @InstanceState
-    protected lateinit var viewModel : QuestionActivityViewModel
+    protected lateinit var viewModel: QuestionActivityViewModel
 
-    protected fun onCreate(@BindingObject dataBinder : ActivityQuestionBinding) {
-        if(!this::question.isInitialized)
+    protected fun onCreate(@BindingObject dataBinder: ActivityQuestionBinding) {
+        if (!this::question.isInitialized)
             question = Question()
-        if(!this::viewModel.isInitialized)
+        if (!this::viewModel.isInitialized)
             viewModel = QuestionActivityViewModel(question)
 
         dataBinder.viewModel = viewModel
 
-       if(question==viewModel.defaultQuestion)
-           getRandomQuestion()
+        if (question.id == null)
+            getRandomQuestion()
     }
 
     @Click(R.id.retry_button)
-    protected fun onRetryButtonClicked(){
+    protected fun onRetryButtonClicked() {
         getRandomQuestion()
     }
 
     @Click(R.id.choice1_button)
-    protected fun onChoice1ButtonClicked(){
+    protected fun onChoice1ButtonClicked() {
         chooseQuestion1(viewModel.question.id!!)
     }
 
     @Click(R.id.choice2_button)
-    protected fun onChoice2ButtonClicked(){
+    protected fun onChoice2ButtonClicked() {
         chooseQuestion2(viewModel.question.id!!)
     }
 
-    protected  fun getRandomQuestion(){
+    protected fun getRandomQuestion() {
         viewModel.isLoading = true
         viewModel.currentErrorCode = QuestionActivityErrorCode.NONE
-        viewModel.errorMessage = ""
 
         questionService.getRandomQuestion(
             this::onRandomQuestionFound,
             this::onConnectivityError,
-            this::onServerError)
+            this::onServerError
+        )
     }
-    protected fun chooseQuestion1(id : UUID) {
+
+    protected fun chooseQuestion1(id: UUID) {
         viewModel.userHasAnswered = true
-        questionService.getQuestion1( id.toString(),this::onQuestion1Chose,
+        questionService.getQuestion1(
+            id.toString(),
+            this::onQuestionChoose,
             this::onConnectivityError,
-            this::onServerError)
+            this::onServerError
+        )
     }
 
     protected fun chooseQuestion2(id: UUID) {
         viewModel.userHasAnswered = true
-        questionService.getQuestion2(  id.toString(), this::onQuestion2Chose,
+        questionService.getQuestion2(
+            id.toString(),
+            this::onQuestionChoose,
             this::onConnectivityError,
-            this::onServerError)
+            this::onServerError
+        )
     }
+
     @UiThread
-    protected fun onRandomQuestionFound(question : Question){
+    protected fun onRandomQuestionFound(question: Question) {
         this.question = question
         viewModel.question = question
         viewModel.isLoading = false
@@ -80,27 +88,20 @@ class QuestionActivity : AppCompatActivity() {
     }
 
     @UiThread
-    protected fun onQuestion1Chose(question: Question){
-        viewModel.question = question
-    }
-
-    @UiThread
-    protected fun onQuestion2Chose(question : Question){
+    protected fun onQuestionChoose(question: Question) {
         this.question = question
         viewModel.question = question
     }
 
     @UiThread
-    protected fun onConnectivityError(){
+    protected fun onConnectivityError() {
         viewModel.currentErrorCode = QuestionActivityErrorCode.CONNECTIVITY
-        viewModel.errorMessage = getString(R.string.text_error_internet) //TODO: Change this shit
         viewModel.isLoading = false
     }
 
     @UiThread
-    protected  fun onServerError(){
+    protected fun onServerError() {
         viewModel.isLoading = false
         viewModel.currentErrorCode = QuestionActivityErrorCode.SERVER
-        viewModel.errorMessage = getString(R.string.text_error_server)
     }
 }
