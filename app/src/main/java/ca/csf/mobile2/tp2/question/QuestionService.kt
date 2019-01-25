@@ -48,8 +48,10 @@ class QuestionService{
         }
 
     }
+    //TODO renamefonction
     @Background
-    fun getQuestion2(id : String,onSuccess : (Question) -> Unit,
+    fun getQuestion2(id : String,
+                     onSuccess : (Question) -> Unit,
                      onConnectivityError : () -> Unit,
                      onServerError : () -> Unit){
         try{

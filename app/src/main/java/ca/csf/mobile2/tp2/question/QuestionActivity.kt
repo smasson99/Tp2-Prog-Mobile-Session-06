@@ -33,6 +33,7 @@ class QuestionActivity : AppCompatActivity() {
            getRandomQuestion()
     }
 
+    //TODO : Delete me
     @AfterViews
     protected fun afterViews(){
 
@@ -83,6 +84,8 @@ class QuestionActivity : AppCompatActivity() {
         viewModel.isLoading = false
         viewModel.userHasAnswered = false
     }
+
+    //TODO : Duplicate code to remove
     @UiThread
     protected fun onQuestion1Chose(question: Question){
         this.question = question

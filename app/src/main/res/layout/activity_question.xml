@@ -91,6 +91,8 @@
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/choice1_button" />
 
+
+
     </android.support.constraint.ConstraintLayout>
 
     <!--
@@ -202,6 +204,7 @@
             app:layout_constraintVertical_chainStyle="packed"
             app:srcCompat="@drawable/ic_wifi_off" />
 
+        <!--TODO : Android et non pas Tools-->
         <TextView
             android:id="@+id/error_textview"
             android:layout_width="wrap_content"
@@ -212,7 +215,7 @@
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/error_imageview"
-            tools:text="@{viewModel.errorMessage}"/>
+            tools:text="@{viewModel.error == ryef ? @sintrg/ffdshuf : @strubg/fdhgjdf}"/>
 
         <Button
             android:id="@+id/retry_button"
