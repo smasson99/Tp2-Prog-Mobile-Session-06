@@ -35,7 +35,7 @@
                     style="@style/AppTheme.EditText"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    amdroid:text="@={viewModel.text}"
+                    android:text="@={viewModel.text}"
                     android:hint="@string/text_question" />
 
         </android.support.design.widget.TextInputLayout>
@@ -58,7 +58,7 @@
                     style="@style/AppTheme.EditText"
                     android:layout_width="match_parent"
                     android:layout_height="match_parent"
-                    amdroid:text="@={viewModel.text_choice1}"
+                    android:text="@={viewModel.text_choice1}"
                     android:hint="@string/text_choice1" />
 
         </android.support.design.widget.TextInputLayout>
@@ -82,7 +82,7 @@
                     style="@style/AppTheme.EditText"
                     android:layout_width="match_parent"
                     android:layout_height="match_parent"
-                    amdroid:text="@={viewModel.text_choice2}"
+                    android:text="@={viewModel.text_choice2}"
                     android:hint="@string/text_choice2" />
 
         </android.support.design.widget.TextInputLayout>
@@ -99,7 +99,7 @@
                 app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/choice2InputLayout"/>
+                app:layout_constraintTop_toBottomOf="@+id/choice2InputLayout" android:onClick="onPostButtonClick"/>
 
     </android.support.constraint.ConstraintLayout>
 

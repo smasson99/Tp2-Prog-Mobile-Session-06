@@ -11,7 +11,7 @@ import retrofit2.http.POST
 import java.io.IOException
 
 //todo:bonne url
-//private const val URL="https://m2t2.csfpwmjv.tk/"
+private const val URL="https://m2t2.csfpwmjv.tk/"
 
 @EBean(scope = EBean.Scope.Singleton)
 class CreateQuestionService{

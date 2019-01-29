@@ -12,5 +12,17 @@ class CreateQuestionActivityViewModel @ParcelConstructor constructor() : BaseObs
 
     @get:Bindable
     @set:Bindable
-    var questionText:String by ViewModelProperty("",this)
+    var questionText: String by ViewModelProperty("", this)
+
+    @get:Bindable
+    @set:Bindable
+    var choice1: String by ViewModelProperty("", this)
+
+    @get:Bindable
+    @set:Bindable
+    var choice2: String by ViewModelProperty("", this)
+
+    fun createQuestion(): String {
+        return ""
+    }
 }
