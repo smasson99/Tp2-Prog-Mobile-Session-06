@@ -35,7 +35,7 @@
                     style="@style/AppTheme.EditText"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:text="@={viewModel.text}"
+                    android:text="@={viewModel.questionText}"
                     android:hint="@string/text_question" />
 
         </android.support.design.widget.TextInputLayout>
@@ -58,7 +58,7 @@
                     style="@style/AppTheme.EditText"
                     android:layout_width="match_parent"
                     android:layout_height="match_parent"
-                    android:text="@={viewModel.text_choice1}"
+                    android:text="@={viewModel.choice1}"
                     android:hint="@string/text_choice1" />
 
         </android.support.design.widget.TextInputLayout>
@@ -82,7 +82,7 @@
                     style="@style/AppTheme.EditText"
                     android:layout_width="match_parent"
                     android:layout_height="match_parent"
-                    android:text="@={viewModel.text_choice2}"
+                    android:text="@={viewModel.choice2}"
                     android:hint="@string/text_choice2" />
 
         </android.support.design.widget.TextInputLayout>
@@ -98,8 +98,13 @@
                 android:text="@string/text_btn_create"
                 app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/choice2InputLayout" android:onClick="onPostButtonClick"/>
+                app:layout_constraintTop_toBottomOf="@+id/choice2InputLayout" android:onClick="onPostButtonClick"
+                app:layout_constraintStart_toEndOf="@+id/button"/>
+        <Button
+                android:text="Return"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content" tools:layout_editor_absoluteY="675dp"
+                tools:layout_editor_absoluteX="8dp" android:id="@+id/button"/>
 
     </android.support.constraint.ConstraintLayout>
 
