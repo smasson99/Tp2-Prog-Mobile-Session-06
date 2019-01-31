@@ -1,11 +1,10 @@
-<layout
+﻿<layout
     xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools">
 
     <data>
         <import type="android.view.View" />
-        <import type="ca.csf.mobile2.tp2.question.QuestionActivityErrorCode"/>
 
         <variable
         name = "viewModel"
@@ -27,32 +26,23 @@
     <!--
     *************************************************************
     IMPORTANT!!!!
-
     En temps normal, ce fichier de layout serait séparé en
     plusieurs petits fichiers. Cependant, cela complexifie
     votre gestion du DataBinding. Pour simplifier le travail,
     il n'y a qu'un seul fichier contenant diverses parties que
     vous devrez afficher ou cacher en fonction des besoins.
-
     Pour afficher ou cacher un élément d'interface, utilisez
     cet attribut :
-
         android:visibility
-
     Ce dernier peut recevoir une de ces trois valeurs :
-
      * View.VISIBLE
      * View.INVISIBLE
      * View.GONE
-
     Quand vous serez rendu à modifier ce fichier pour faire du
     DataBinding, ajoutez ceci dans la balise « <data> » :
-
         <import type="android.view.View" />
-
     Cela vous sera nécessaire pour avoir accès aux différentes
     constantes.
-
     *************************************************************
     -->
 
@@ -91,8 +81,6 @@
             app:layout_constraintHorizontal_bias="0.5"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/choice1_button" />
-
-
 
     </android.support.constraint.ConstraintLayout>
 
@@ -215,7 +203,7 @@
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/error_imageview"
-            app:text="@{viewModel.error == QuestionActivityErrorCode.CONNECTIVITY ? @string/text_error_internet :  @string/text_error_server }"/>
+            tools:text="@{viewModel.errorMessage}"/>
 
         <Button
             android:id="@+id/retry_button"
