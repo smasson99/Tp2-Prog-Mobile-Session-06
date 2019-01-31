@@ -61,7 +61,7 @@ class QuestionActivity : AppCompatActivity() {
 
     protected fun chooseQuestion1(id: UUID) {
         viewModel.userHasAnswered = true
-        questionService.getQuestion1(
+        questionService.postQuestion1(
             id.toString(),
             this::onQuestionChoose,
             this::onConnectivityError,
@@ -71,7 +71,7 @@ class QuestionActivity : AppCompatActivity() {
 
     protected fun chooseQuestion2(id: UUID) {
         viewModel.userHasAnswered = true
-        questionService.getQuestion2(
+        questionService.postQuestion2(
             id.toString(),
             this::onQuestionChoose,
             this::onConnectivityError,
