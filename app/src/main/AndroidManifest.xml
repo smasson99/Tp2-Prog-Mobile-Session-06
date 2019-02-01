@@ -20,7 +20,10 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-        <activity android:name=".question.CreateQuestionActivity_"></activity>
+        <activity
+            android:name=".question.CreateQuestionActivity_"
+            android:parentActivityName=".question.QuestionActivity_">
+        </activity>
     </application>
 
 </manifest>

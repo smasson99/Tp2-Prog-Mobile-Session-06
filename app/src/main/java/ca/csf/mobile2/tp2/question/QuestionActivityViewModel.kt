@@ -23,8 +23,10 @@ class QuestionActivityViewModel @ParcelConstructor constructor(question: Questio
     private val questionTotalAnswers: Int get() = question.nbChoice1 + question.nbChoice2
 
     var question by ViewModelProperty(question, this)
-    var currentErrorCode by ViewModelProperty(QuestionActivityErrorCode.NONE, this)
     var userHasAnswered by ViewModelProperty(false, this)
+
+    @get:Bindable
+    var currentErrorCode by ViewModelProperty(QuestionActivityErrorCode.NONE, this)
 
     @get:Bindable
     val questionText: String

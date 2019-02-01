@@ -1,6 +1,8 @@
 package ca.csf.mobile2.tp2.question
 
 import android.annotation.SuppressLint
+import android.content.Intent
+import android.support.design.widget.Snackbar
 import android.support.v7.app.AppCompatActivity
 import ca.csf.mobile2.tp2.R
 import ca.csf.mobile2.tp2.databinding.ActivityQuestionBinding
@@ -33,6 +35,13 @@ class QuestionActivity : AppCompatActivity() {
             getRandomQuestion()
     }
 
+    @Click(R.id.button3)
+    protected fun goCreateQuestion() {
+        Snackbar.make(findViewById(R.id.root_view), "Erreur", Snackbar.LENGTH_LONG)
+        /*val intent = Intent(this, CreateQuestionActivity::class.java)
+        startActivity(intent)*/
+    }
+
     @Click(R.id.retry_button)
     protected fun onRetryButtonClicked(){
         getRandomQuestion()
@@ -59,7 +68,7 @@ class QuestionActivity : AppCompatActivity() {
     }
     protected fun chooseQuestion1(id : UUID) {
         viewModel.userHasAnswered = true
-        questionService.getQuestion1(
+        questionService.postQuestion1(
             id.toString(),
             this::onQuestionChoose,
             this::onConnectivityError,
@@ -68,7 +77,7 @@ class QuestionActivity : AppCompatActivity() {
 
     protected fun chooseQuestion2(id: UUID) {
         viewModel.userHasAnswered = true
-        questionService.getQuestion2(
+        questionService.postQuestion2(
             id.toString(),
             this::onQuestionChoose,
             this::onConnectivityError,

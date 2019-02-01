@@ -13,12 +13,12 @@ import retrofit2.http.Path
 import java.io.IOException
 
 //TODO Control alt L this
-private const val URL="https://m2t2.csfpwmjv.tk/"
+private const val URL = "https://m2t2.csfpwmjv.tk/"
 
 @EBean(scope = EBean.Scope.Singleton)
-class QuestionService{
+class QuestionService {
 
-    private val service : Service
+    private val service: Service
 
     init {
         val jackson = ObjectMapper()
@@ -32,72 +32,72 @@ class QuestionService{
     }
 
     @Background
-    fun getQuestion1(id : String,onSuccess : (Question) -> Unit,
-                     onConnectivityError : () -> Unit,
-                     onServerError : () -> Unit){
-        try{
+    fun postQuestion1(
+        id: String, onSuccess: (Question) -> Unit,
+        onConnectivityError: () -> Unit,
+        onServerError: () -> Unit
+    ) {
+        try {
             val response = service.chooseQuestion1(id).execute()
-            if(response.isSuccessful){
+            if (response.isSuccessful) {
                 onSuccess(response.body()!!)
-            }
-            else{
+            } else {
                 onServerError()
             }
-        }
-        catch (e: IOException){
+        } catch (e: IOException) {
             onConnectivityError()
         }
 
     }
-    //TODO renamefonction
+
     @Background
-    fun getQuestion2(id : String,
-                     onSuccess : (Question) -> Unit,
-                     onConnectivityError : () -> Unit,
-                     onServerError : () -> Unit){
-        try{
+    fun postQuestion2(
+        id: String,
+        onSuccess: (Question) -> Unit,
+        onConnectivityError: () -> Unit,
+        onServerError: () -> Unit
+    ) {
+        try {
             val response = service.chooseQuestion2(id).execute()
-            if(response.isSuccessful){
+            if (response.isSuccessful) {
                 onSuccess(response.body()!!)
-            }
-            else{
+            } else {
                 onServerError()
             }
-        }
-        catch (e: IOException){
+        } catch (e: IOException) {
             onConnectivityError()
         }
     }
+
     @Background
-    fun getRandomQuestion(onSuccess : (Question) -> Unit,
-                          onConnectivityError : () -> Unit,
-                          onServerError : () -> Unit){
+    fun getRandomQuestion(
+        onSuccess: (Question) -> Unit,
+        onConnectivityError: () -> Unit,
+        onServerError: () -> Unit
+    ) {
 
-        try{
+        try {
             val response = service.getRandomQuestion().execute()
-            if(response.isSuccessful){
+            if (response.isSuccessful) {
                 onSuccess(response.body()!!)
-            }
-            else{
+            } else {
                 onServerError()
             }
-        }
-        catch (e: IOException){
+        } catch (e: IOException) {
             onConnectivityError()
         }
 
     }
-
 
 
     private interface Service {
         @GET("/api/v1/question/random")
-        fun getRandomQuestion() : Call<Question>
+        fun getRandomQuestion(): Call<Question>
 
         @POST("/api/v1/question/{id}/choose1")
-        fun chooseQuestion1(@Path("id") id : String ) : Call<Question>
+        fun chooseQuestion1(@Path("id") id: String): Call<Question>
 
-        @POST ("/api/v1/question/{id}/choose2")
-        fun chooseQuestion2(@Path("id")id : String) : Call<Question>
+        @POST("/api/v1/question/{id}/choose2")
+        fun chooseQuestion2(@Path("id") id: String): Call<Question>
     }
 }
