@@ -1,246 +1,256 @@
-﻿<layout
-    xmlns:android="http://schemas.android.com/apk/res/android"
+﻿<layout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools">
 
     <data>
+
         <import type="android.view.View" />
 
         <variable
-        name = "viewModel"
-        type = "ca.csf.mobile2.tp2.question.QuestionActivityViewModel"/>
+            name="viewModel"
+            type="ca.csf.mobile2.tp2.question.QuestionActivityViewModel" />
     </data>
 
     <FrameLayout
-    android:id="@+id/root_view"
-    android:layout_width="match_parent"
-    android:layout_height="match_parent"
-    tools:context="ca.csf.mobile2.tp2.question.QuestionActivity">
-
-    <Toolbar
-        android:id="@+id/toolbar"
-        android:layout_width="match_parent"
-        android:layout_height="?attr/actionBarSize"
-        tools:title="@{viewModel.questionText}" />
-
-    <!--
-    *************************************************************
-    IMPORTANT!!!!
-    En temps normal, ce fichier de layout serait séparé en
-    plusieurs petits fichiers. Cependant, cela complexifie
-    votre gestion du DataBinding. Pour simplifier le travail,
-    il n'y a qu'un seul fichier contenant diverses parties que
-    vous devrez afficher ou cacher en fonction des besoins.
-    Pour afficher ou cacher un élément d'interface, utilisez
-    cet attribut :
-        android:visibility
-    Ce dernier peut recevoir une de ces trois valeurs :
-     * View.VISIBLE
-     * View.INVISIBLE
-     * View.GONE
-    Quand vous serez rendu à modifier ce fichier pour faire du
-    DataBinding, ajoutez ceci dans la balise « <data> » :
-        <import type="android.view.View" />
-    Cela vous sera nécessaire pour avoir accès aux différentes
-    constantes.
-    *************************************************************
-    -->
-
-    <!--
-    *************************************************************
-    Section "Poser une question"
-    *************************************************************
-    -->
-
-    <android.support.constraint.ConstraintLayout
+        android:id="@+id/root_view"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:layout_marginTop="?attr/actionBarSize"
-        android:visibility="@{viewModel.canShowQuestions ? View.VISIBLE : View.INVISIBLE}">
+        tools:context="ca.csf.mobile2.tp2.question.QuestionActivity">
+
+        <Toolbar
+            android:id="@+id/toolbar"
+            android:layout_width="match_parent"
+            android:layout_height="?attr/actionBarSize"
+            tools:title="@{viewModel.questionText}" />
+
+        <!--
+        *************************************************************
+        IMPORTANT!!!!
+        En temps normal, ce fichier de layout serait séparé en
+        plusieurs petits fichiers. Cependant, cela complexifie
+        votre gestion du DataBinding. Pour simplifier le travail,
+        il n'y a qu'un seul fichier contenant diverses parties que
+        vous devrez afficher ou cacher en fonction des besoins.
+        Pour afficher ou cacher un élément d'interface, utilisez
+        cet attribut :
+            android:visibility
+        Ce dernier peut recevoir une de ces trois valeurs :
+         * View.VISIBLE
+         * View.INVISIBLE
+         * View.GONE
+        Quand vous serez rendu à modifier ce fichier pour faire du
+        DataBinding, ajoutez ceci dans la balise « <data> » :
+            <import type="android.view.View" />
+        Cela vous sera nécessaire pour avoir accès aux différentes
+        constantes.
+        *************************************************************
+        -->
+
+        <!--
+        *************************************************************
+        Section "Poser une question"
+        *************************************************************
+        -->
 
         <Button
-            android:id="@+id/choice1_button"
-            style="@style/AppTheme.Choice1Button"
-            android:layout_width="0dp"
-            android:layout_height="0dp"
-            android:text="@{viewModel.choice1}"
-            app:layout_constraintBottom_toTopOf="@+id/choice2_button"
+            android:id="@+id/button3"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Create question"
+            android:visibility="visible"
             app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintHorizontal_bias="0.5"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent" />
+            app:layout_constraintStart_toStartOf="parent" />
 
-        <Button
-            android:id="@+id/choice2_button"
-            style="@style/AppTheme.Choice2Button"
-            android:layout_width="0dp"
-            android:layout_height="0dp"
-            android:text="@{viewModel.choice2}"
-            app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintHorizontal_bias="0.5"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/choice1_button" />
+        <android.support.constraint.ConstraintLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_marginTop="?attr/actionBarSize"
+            android:visibility="@{viewModel.canShowQuestions ? View.VISIBLE : View.INVISIBLE}">
 
-    </android.support.constraint.ConstraintLayout>
+            <Button
+                android:id="@+id/choice1_button"
+                style="@style/AppTheme.Choice1Button"
+                android:layout_width="0dp"
+                android:layout_height="0dp"
+                android:text="@{viewModel.choice1}"
+                app:layout_constraintBottom_toTopOf="@+id/choice2_button"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintHorizontal_bias="0.5"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent" />
 
-    <!--
-    *************************************************************
-    Section "Afficher les résultats"
-    *************************************************************
-    -->
+            <Button
+                android:id="@+id/choice2_button"
+                style="@style/AppTheme.Choice2Button"
+                android:layout_width="0dp"
+                android:layout_height="0dp"
+                android:text="@{viewModel.choice2}"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintHorizontal_bias="0.5"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/choice1_button" />
 
-    <android.support.constraint.ConstraintLayout
-        android:id="@+id/answers_view"
-        android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:layout_marginTop="?attr/actionBarSize"
-        android:visibility="@{viewModel.canShowAnswers ? View.VISIBLE : View.INVISIBLE}">
+        </android.support.constraint.ConstraintLayout>
 
-        <View
-            android:id="@+id/choice1_result_background"
-            style="@style/AppTheme.Choice1ResultFrame"
-            android:layout_width="0dp"
-            android:layout_height="0dp"
-            app:layout_constraintBottom_toTopOf="@id/choice2_result_background"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent" />
+        <!--
+        *************************************************************
+        Section "Afficher les résultats"
+        *************************************************************
+        -->
 
-        <View
-            android:id="@+id/choice2_result_background"
-            style="@style/AppTheme.Choice2ResultFrame"
-            android:layout_width="0dp"
-            android:layout_height="0dp"
-            app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@id/choice1_result_background" />
+        <android.support.constraint.ConstraintLayout
+            android:id="@+id/answers_view"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_marginTop="?attr/actionBarSize"
+            android:visibility="@{viewModel.canShowAnswers ? View.VISIBLE : View.INVISIBLE}">
 
-        <TextView
+            <View
+                android:id="@+id/choice1_result_background"
+                style="@style/AppTheme.Choice1ResultFrame"
+                android:layout_width="0dp"
+                android:layout_height="0dp"
+                app:layout_constraintBottom_toTopOf="@id/choice2_result_background"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent" />
+
+            <View
+                android:id="@+id/choice2_result_background"
+                style="@style/AppTheme.Choice2ResultFrame"
+                android:layout_width="0dp"
+                android:layout_height="0dp"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@id/choice1_result_background" />
+
+            <TextView
                 android:id="@+id/choice1_result_textview"
                 style="@style/AppTheme.ChoiceResultTextView"
                 android:layout_width="0dp"
                 android:layout_height="0dp"
-                app:percentage="@{viewModel.percentQuestion1}"
                 app:layout_constraintBottom_toBottomOf="@+id/choice1_result_background"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toTopOf="@+id/choice1_result_background"
-                app:layout_constraintVertical_chainStyle="spread"/>
+                app:layout_constraintVertical_chainStyle="spread"
+                app:percentage="@{viewModel.percentQuestion1}" />
 
-        <TextView
-            android:id="@+id/choice1_textview"
-            style="@style/AppTheme.ChoiceTextView"
-            android:layout_width="0dp"
-            android:layout_height="wrap_content"
-            android:text="@{viewModel.choice1}"
-            app:layout_constraintBottom_toBottomOf="@+id/choice1_result_background"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="parent" />
+            <TextView
+                android:id="@+id/choice1_textview"
+                style="@style/AppTheme.ChoiceTextView"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:text="@{viewModel.choice1}"
+                app:layout_constraintBottom_toBottomOf="@+id/choice1_result_background"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent" />
 
-        <TextView
-            android:id="@+id/choice2_result_textview"
-            style="@style/AppTheme.ChoiceResultTextView"
-            android:layout_width="0dp"
-            android:layout_height="0dp"
-            app:percentage="@{viewModel.percentQuestion2}"
-            app:layout_constraintBottom_toBottomOf="@+id/choice2_result_background"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="@+id/choice2_result_background" />
+            <TextView
+                android:id="@+id/choice2_result_textview"
+                style="@style/AppTheme.ChoiceResultTextView"
+                android:layout_width="0dp"
+                android:layout_height="0dp"
+                app:layout_constraintBottom_toBottomOf="@+id/choice2_result_background"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="@+id/choice2_result_background"
+                app:percentage="@{viewModel.percentQuestion2}" />
 
-        <TextView
-            android:id="@+id/choice2_textview"
-            style="@style/AppTheme.ChoiceTextView"
-            android:layout_width="0dp"
-            android:layout_height="wrap_content"
-            android:text="@{viewModel.choice2}"
-            app:layout_constraintBottom_toBottomOf="@+id/choice2_result_background"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="parent" />
+            <TextView
+                android:id="@+id/choice2_textview"
+                style="@style/AppTheme.ChoiceTextView"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:text="@{viewModel.choice2}"
+                app:layout_constraintBottom_toBottomOf="@+id/choice2_result_background"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent" />
 
-    </android.support.constraint.ConstraintLayout>
+        </android.support.constraint.ConstraintLayout>
 
-    <!--
-    *************************************************************
-    Section "Afficher les erreurs"
-    *************************************************************
-    -->
+        <!--
+        *************************************************************
+        Section "Afficher les erreurs"
+        *************************************************************
+        -->
 
-    <android.support.constraint.ConstraintLayout
-        android:id="@+id/errors_view"
-        android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:background="?android:colorBackground"
-        android:translationZ="16dp"
-        android:visibility="@{viewModel.hasAnError ? View.VISIBLE : View.INVISIBLE}">
-
-        <ImageView
-            android:id="@+id/error_imageview"
-            android:layout_width="128dp"
-            android:layout_height="128dp"
-            android:layout_marginStart="8dp"
-            android:layout_marginTop="8dp"
-            android:layout_marginEnd="8dp"
-            android:layout_marginBottom="8dp"
-            android:adjustViewBounds="true"
-            android:contentDescription="@string/text_error"
-            app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent"
-            app:layout_constraintVertical_chainStyle="packed"
-            app:srcCompat="@drawable/ic_wifi_off" />
-
-        <TextView
-            android:id="@+id/error_textview"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginStart="8dp"
-            android:layout_marginTop="8dp"
-            android:layout_marginEnd="8dp"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/error_imageview"
-            tools:text="@{viewModel.errorMessage}"/>
-
-        <Button
-            android:id="@+id/retry_button"
-            style="@style/Widget.AppCompat.Button.Borderless.Colored"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginStart="8dp"
-            android:layout_marginTop="8dp"
-            android:layout_marginEnd="8dp"
-            android:layout_marginBottom="8dp"
-            android:text="@string/text_btn_retry"
-            app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/error_textview"/>
-
-    </android.support.constraint.ConstraintLayout>
-
-    <!--
-    *************************************************************
-    Section "Afficher le chargement d'une question"
-    *************************************************************
-    -->
-
-    <FrameLayout
-        android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:background="@color/colorPrimaryAlpha"
-        android:translationZ="16dp"
-        android:visibility="@{viewModel.isLoading ? View.VISIBLE : View.INVISIBLE}">
-
-        <ProgressBar
-            android:id="@+id/progressBar"
+        <android.support.constraint.ConstraintLayout
+            android:id="@+id/errors_view"
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_gravity="center"/>
+            android:layout_height="match_parent"
+            android:background="?android:colorBackground"
+            android:translationZ="16dp"
+            android:visibility="@{viewModel.hasAnError ? View.VISIBLE : View.INVISIBLE}">
+
+            <ImageView
+                android:id="@+id/error_imageview"
+                android:layout_width="128dp"
+                android:layout_height="128dp"
+                android:layout_marginStart="8dp"
+                android:layout_marginTop="8dp"
+                android:layout_marginEnd="8dp"
+                android:layout_marginBottom="8dp"
+                android:adjustViewBounds="true"
+                android:contentDescription="@string/text_error"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent"
+                app:layout_constraintVertical_chainStyle="packed"
+                app:srcCompat="@drawable/ic_wifi_off" />
+
+            <TextView
+                android:id="@+id/error_textview"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="8dp"
+                android:layout_marginTop="8dp"
+                android:layout_marginEnd="8dp"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/error_imageview"
+                tools:text="@{viewModel.errorMessage}" />
+
+            <Button
+                android:id="@+id/retry_button"
+                style="@style/Widget.AppCompat.Button.Borderless.Colored"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="8dp"
+                android:layout_marginTop="8dp"
+                android:layout_marginEnd="8dp"
+                android:layout_marginBottom="8dp"
+                android:text="@string/text_btn_retry"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/error_textview" />
+
+        </android.support.constraint.ConstraintLayout>
+
+        <!--
+        *************************************************************
+        Section "Afficher le chargement d'une question"
+        *************************************************************
+        -->
+
+        <FrameLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:background="@color/colorPrimaryAlpha"
+            android:translationZ="16dp"
+            android:visibility="@{viewModel.isLoading ? View.VISIBLE : View.INVISIBLE}">
+
+            <ProgressBar
+                android:id="@+id/progressBar"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center" />
+
+        </FrameLayout>
 
     </FrameLayout>
-
-</FrameLayout></layout>
+</layout>

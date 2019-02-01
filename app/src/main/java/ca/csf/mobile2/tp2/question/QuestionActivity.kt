@@ -29,13 +29,8 @@ class QuestionActivity : AppCompatActivity() {
 
         dataBinder.viewModel = viewModel
 
-       if(question==viewModel.defaultQuestion)
-           getRandomQuestion()
-    }
-
-    @AfterViews
-    protected fun afterViews(){
-
+        if (question.id == null)
+            getRandomQuestion()
     }
 
     @Click(R.id.retry_button)
@@ -56,7 +51,6 @@ class QuestionActivity : AppCompatActivity() {
     protected  fun getRandomQuestion(){
         viewModel.isLoading = true
         viewModel.currentErrorCode = QuestionActivityErrorCode.NONE
-        viewModel.errorMessage = ""
 
         questionService.getRandomQuestion(
             this::onRandomQuestionFound,
@@ -65,14 +59,18 @@ class QuestionActivity : AppCompatActivity() {
     }
     protected fun chooseQuestion1(id : UUID) {
         viewModel.userHasAnswered = true
-        questionService.getQuestion1( id.toString(),this::onQuestion1Chose,
+        questionService.getQuestion1(
+            id.toString(),
+            this::onQuestionChoose,
             this::onConnectivityError,
             this::onServerError)
     }
 
     protected fun chooseQuestion2(id: UUID) {
         viewModel.userHasAnswered = true
-        questionService.getQuestion2(  id.toString(), this::onQuestion2Chose,
+        questionService.getQuestion2(
+            id.toString(),
+            this::onQuestionChoose,
             this::onConnectivityError,
             this::onServerError)
     }
@@ -83,14 +81,9 @@ class QuestionActivity : AppCompatActivity() {
         viewModel.isLoading = false
         viewModel.userHasAnswered = false
     }
-    @UiThread
-    protected fun onQuestion1Chose(question: Question){
-        this.question = question
-        viewModel.question = question
-    }
 
     @UiThread
-    protected fun onQuestion2Chose(question : Question){
+    protected fun onQuestionChoose(question: Question) {
         this.question = question
         viewModel.question = question
     }
@@ -98,7 +91,6 @@ class QuestionActivity : AppCompatActivity() {
     @UiThread
     protected fun onConnectivityError(){
         viewModel.currentErrorCode = QuestionActivityErrorCode.CONNECTIVITY
-        viewModel.errorMessage = getString(R.string.text_error_internet)
         viewModel.isLoading = false
     }
 
@@ -106,6 +98,5 @@ class QuestionActivity : AppCompatActivity() {
     protected  fun onServerError(){
         viewModel.isLoading = false
         viewModel.currentErrorCode = QuestionActivityErrorCode.SERVER
-        viewModel.errorMessage = getString(R.string.text_error_server)
     }
 }
