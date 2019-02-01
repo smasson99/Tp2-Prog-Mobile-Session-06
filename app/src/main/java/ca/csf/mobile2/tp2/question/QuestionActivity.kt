@@ -37,9 +37,8 @@ class QuestionActivity : AppCompatActivity() {
 
     @Click(R.id.button3)
     protected fun goCreateQuestion() {
-        Snackbar.make(findViewById(R.id.root_view), "Erreur", Snackbar.LENGTH_LONG)
-        /*val intent = Intent(this, CreateQuestionActivity::class.java)
-        startActivity(intent)*/
+        val intent = Intent(this, CreateQuestionActivity_::class.java)
+        startActivity(intent)
     }
 
     @Click(R.id.retry_button)

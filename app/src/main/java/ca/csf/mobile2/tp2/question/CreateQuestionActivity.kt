@@ -48,16 +48,16 @@ class CreateQuestionActivity : AppCompatActivity() {
 
     @UiThread
     protected fun onQuestionPost() {
-        Snackbar.make(findViewById(R.id.root_view), "Correct", Snackbar.LENGTH_SHORT)
+        Snackbar.make(findViewById(R.id.root_view), "Question envoyée", Snackbar.LENGTH_LONG).show()
     }
 
     @UiThread
     protected fun onConnectivityError() {
-        Snackbar.make(findViewById(R.id.root_view), "Erreur", Snackbar.LENGTH_SHORT)
+        Snackbar.make(findViewById(R.id.root_view), R.string.text_error_internet, Snackbar.LENGTH_LONG).show()
     }
 
     @UiThread
     protected fun onServerError() {
-        Snackbar.make(findViewById(R.id.root_view), "Erreur", Snackbar.LENGTH_SHORT)
+        Snackbar.make(findViewById(R.id.root_view), R.string.text_error_server, Snackbar.LENGTH_LONG).show()
     }
 }
