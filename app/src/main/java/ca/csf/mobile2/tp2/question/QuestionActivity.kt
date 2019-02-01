@@ -33,6 +33,11 @@ class QuestionActivity : AppCompatActivity() {
             getRandomQuestion()
     }
 
+    @Click(R.id.answers_view)
+    protected fun onNextQuestionPressed(){
+        if(viewModel.userHasAnswered)
+        getRandomQuestion()
+    }
     @Click(R.id.retry_button)
     protected fun onRetryButtonClicked() {
         getRandomQuestion()
