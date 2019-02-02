@@ -5,7 +5,8 @@
     <data>
 
         <import type="android.view.View" />
-        <import type="ca.csf.mobile2.tp2.question.QuestionActivityErrorCode"/>
+
+        <import type="ca.csf.mobile2.tp2.question.QuestionActivityErrorCode" />
 
         <variable
             name="viewModel"
@@ -23,36 +24,6 @@
             android:layout_width="match_parent"
             android:layout_height="?attr/actionBarSize"
             tools:title="@{viewModel.questionText}" />
-
-        <!--
-        *************************************************************
-        IMPORTANT!!!!
-        En temps normal, ce fichier de layout serait séparé en
-        plusieurs petits fichiers. Cependant, cela complexifie
-        votre gestion du DataBinding. Pour simplifier le travail,
-        il n'y a qu'un seul fichier contenant diverses parties que
-        vous devrez afficher ou cacher en fonction des besoins.
-        Pour afficher ou cacher un élément d'interface, utilisez
-        cet attribut :
-            android:visibility
-        Ce dernier peut recevoir une de ces trois valeurs :
-         * View.VISIBLE
-         * View.INVISIBLE
-         * View.GONE
-        Quand vous serez rendu à modifier ce fichier pour faire du
-        DataBinding, ajoutez ceci dans la balise « <data> » :
-            <import type="android.view.View" />
-        Cela vous sera nécessaire pour avoir accès aux différentes
-        constantes.
-        *************************************************************
-        -->
-
-        <!--
-        *************************************************************
-        Section "Poser une question"
-        *************************************************************
-        -->
-
 
         <android.support.constraint.ConstraintLayout
             android:layout_width="match_parent"
@@ -90,17 +61,11 @@
                 android:layout_height="wrap_content"
                 android:text="Create question"
                 android:visibility="visible"
+                app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintBottom_toBottomOf="parent"/>
+                app:layout_constraintStart_toStartOf="parent" />
 
         </android.support.constraint.ConstraintLayout>
-
-        <!--
-        *************************************************************
-        Section "Afficher les résultats"
-        *************************************************************
-        -->
 
         <android.support.constraint.ConstraintLayout
             android:id="@+id/answers_view"
@@ -134,12 +99,12 @@
                 style="@style/AppTheme.ChoiceResultTextView"
                 android:layout_width="0dp"
                 android:layout_height="0dp"
-                app:percentage="@{viewModel.percentQuestion1}"
                 app:layout_constraintBottom_toBottomOf="@+id/choice1_result_background"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toTopOf="@+id/choice1_result_background"
-                app:layout_constraintVertical_chainStyle="spread"/>
+                app:layout_constraintVertical_chainStyle="spread"
+                app:percentage="@{viewModel.percentQuestion1}" />
 
             <TextView
                 android:id="@+id/choice1_textview"
@@ -173,12 +138,6 @@
                 app:layout_constraintStart_toStartOf="parent" />
 
         </android.support.constraint.ConstraintLayout>
-
-        <!--
-        *************************************************************
-        Section "Afficher les erreurs"
-        *************************************************************
-        -->
 
         <android.support.constraint.ConstraintLayout
             android:id="@+id/errors_view"
@@ -233,12 +192,6 @@
                 app:layout_constraintTop_toBottomOf="@+id/error_textview" />
 
         </android.support.constraint.ConstraintLayout>
-
-        <!--
-        *************************************************************
-        Section "Afficher le chargement d'une question"
-        *************************************************************
-        -->
 
         <FrameLayout
             android:layout_width="match_parent"
