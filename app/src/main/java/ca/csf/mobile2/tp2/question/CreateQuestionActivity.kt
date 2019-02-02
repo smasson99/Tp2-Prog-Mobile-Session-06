@@ -48,7 +48,7 @@ class CreateQuestionActivity : AppCompatActivity() {
 
     @UiThread
     protected fun onQuestionPost() {
-        Snackbar.make(findViewById(R.id.root_view), "Question envoyée", Snackbar.LENGTH_LONG).show()
+        Snackbar.make(findViewById(R.id.root_view), "Question sent", Snackbar.LENGTH_LONG).show()
     }
 
     @UiThread
