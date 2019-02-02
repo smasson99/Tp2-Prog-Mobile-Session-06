@@ -40,8 +40,8 @@ class CreateQuestionService {
         onServerError: () -> Unit
     ) {
         try {
-            val call = service.postQuestion(question.id,question.text,question.choice1,
-                question.choice2,question.nbChoice1,question.nbChoice2)
+            val call = service.postQuestion(question/*.id,question.text,question.choice1,
+                question.choice2,question.nbChoice1,question.nbChoice2*/)
             val response= call.execute()
             if (response.isSuccessful) {
                 onSuccess()
