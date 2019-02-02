@@ -41,6 +41,12 @@ class QuestionActivity : AppCompatActivity() {
         startActivity(intent)
     }
 
+    @Click(R.id.answers_view)
+    protected fun onNextQuestionPressed(){
+        if(viewModel.userHasAnswered)
+            getRandomQuestion()
+    }
+
     @Click(R.id.retry_button)
     protected fun onRetryButtonClicked(){
         getRandomQuestion()
@@ -56,7 +62,7 @@ class QuestionActivity : AppCompatActivity() {
         chooseQuestion2(viewModel.question.id!!)
     }
 
-    protected  fun getRandomQuestion(){
+    protected fun getRandomQuestion(){
         viewModel.isLoading = true
         viewModel.currentErrorCode = QuestionActivityErrorCode.NONE
 
@@ -82,6 +88,7 @@ class QuestionActivity : AppCompatActivity() {
             this::onConnectivityError,
             this::onServerError)
     }
+
     @UiThread
     protected fun onRandomQuestionFound(question : Question){
         this.question = question
@@ -103,7 +110,7 @@ class QuestionActivity : AppCompatActivity() {
     }
 
     @UiThread
-    protected  fun onServerError(){
+    protected fun onServerError(){
         viewModel.isLoading = false
         viewModel.currentErrorCode = QuestionActivityErrorCode.SERVER
     }

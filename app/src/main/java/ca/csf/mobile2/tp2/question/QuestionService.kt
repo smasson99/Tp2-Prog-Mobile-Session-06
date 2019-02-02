@@ -12,7 +12,6 @@ import retrofit2.http.POST
 import retrofit2.http.Path
 import java.io.IOException
 
-//TODO Control alt L this
 private const val URL = "https://m2t2.csfpwmjv.tk/"
 
 @EBean(scope = EBean.Scope.Singleton)
